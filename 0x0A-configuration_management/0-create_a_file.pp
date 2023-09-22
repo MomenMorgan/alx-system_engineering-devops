@@ -1,5 +1,8 @@
-file { '/tmp/school':
+# create school filw with puppet
+
+file { 'school':
   ensure  => file,
+  path    => '/tmp/school',
   mode    => '0744',
   owner   => 'www-data',
   group   => 'www-data',
