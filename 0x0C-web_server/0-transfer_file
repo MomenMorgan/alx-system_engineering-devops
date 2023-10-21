@@ -10,17 +10,17 @@ fi
 
 # assiggning params
 
-file_path=$1
+path_to_file=$1
 ip=$2
 username=$3
-ssh_path=$4
+path_to_ssh_key=$4
 
 # disable strict host key checking
 
-scp -o "strictHostKeyChecking=no" -i "$ssh_path" "$file_path" "$username@$ip:~/"
+scp -o "StrictHostKeyChecking=no" -i "$path_to_ssh_key" "$path_to_file" "$username@$ip:~/:
 
-# if the transfer successfu
-if [$? -eq 0]
+# if the transfer successful
+if [ $? -eq 0 ]
 then
 	echo "File Transsferred successfully"
 else
