@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 
 """Gather data from an API"""
-
+import json
 from requests import get
 from sys import argv
-import json
+
 
 if __name__ == "__main__":
     user_id = argv[1]
