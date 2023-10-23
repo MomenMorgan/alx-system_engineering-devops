@@ -17,7 +17,7 @@ if __name__ == "__main__":
     data = res.text
     data = json.loads(data)
 
-    name = data.get('name')
+    name = data.get('username')
 
     res1 = get(task_url)
     data1 = res1.text
