@@ -22,7 +22,7 @@ def top_ten(subreddit):
 
     if res.status_code >= 300:
         print("None")
-
-    for child in data.get("data").get("children"):
-        title = child.get("data").get("title")
-        print(title)
+    else:
+        for child in data.get("data").get("children"):
+            title = child.get("data").get("title")
+            print(title)
