@@ -1,0 +1,28 @@
+Incident Report - 504 Error and Site Outage
+
+Synopsis
+
+During the midnight of September 11th, 2020, server access experienced a disruption, leading to a 504 error for individuals attempting to visit the website. Notably, the server is based on a LAMP stack.
+
+Chronology
+
+- 00:00 PST - Users encountered a 500 error when trying to access the website.
+- 00:05 PST - Apache and MySQL were verified to be operational.
+- 00:10 PST - The website exhibited improper loading, prompting an investigation that confirmed the server and database were functioning correctly.
+- 00:12 PST - A quick restart of the Apache server resulted in a status of 200 and OK when curling the website.
+- 00:18 PST - Error logs were reviewed to pinpoint the source of the issue.
+- 00:25 PST - Examination of /var/log revealed premature shutdown of the Apache server; PHP error logs were nowhere to be found.
+- 00:30 PST - Inspection of php.ini settings exposed that all error logging was turned off; it was promptly enabled.
+- 00:32 PST - Apache server was restarted, and error logs were checked for PHP-related entries.
+- 00:36 PST - PHP error logs disclosed a mistyped file name causing incorrect loading and premature closure of Apache.
+- 00:38 PST - File name corrected, and Apache server restarted.
+- 00:40 PST - Server restored to normal operation, and the website loaded correctly.
+
+Root Cause and Resolution
+
+The issue stemmed from an incorrect file name reference in the wp-settings.php file, triggering a 500 error when curling the server. Investigation revealed the absence of an error log file for PHP errors. Upon discovering that error logging for PHP was turned off in php.ini, it was enabled. Subsequent examination of the PHP error logs unveiled a misspelled file extension (.phpp) in wp-settings.php, causing the access error. To address potential replication on other servers, a puppet code deployment swiftly rectified misspelled file extensions across all servers, ensuring proper loading upon server restart.
+
+Corrective and Preventive Measures
+
+1. Enable error logging on all servers and sites to facilitate easy identification of errors.
+2. Conduct local testing for all servers and sites before deploying in a multi-server setup to preemptively correct errors and minimize downtime in case of a site malfunction.
