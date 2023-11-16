@@ -1,0 +1,1 @@
+Update the hard limit for Nginx to accept the apc requests
