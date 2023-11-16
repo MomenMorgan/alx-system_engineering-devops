@@ -2,15 +2,15 @@
 
 # Update the Ulimit 
 exec{'fix--for-nginx':
-   command => '/bin/sed -i "s/15/4096/g" /etc/default/nginx',
+        command => '/bin/sed -i "s/15/4096/g" /etc/default/nginx',
 
-   path => '/usr/bin:/usr/sbin:/bin',
+        path    => '/usr/bin:/usr/sbin:/bin',
 }
 
 # Restart the Nginx service
 
 exec{'restart-nginx':
-   command => '/etc/init.d/nginx restart',
+        command => '/etc/init.d/nginx restart',
 
-   path => '/etc/init.d/',
+        path    => '/etc/init.d/',
 }
